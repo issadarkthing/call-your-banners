@@ -50,7 +50,7 @@ export default class extends Command {
 
       // remove any player from general role
       client.players.forEach((val, id) => {
-        client.players.set(id, { ...val, role: "sword" });
+        client.players.set(id, { ...val, role: "sword", lastAttack: new Date(2000) });
       });
 
       // delete all castle
