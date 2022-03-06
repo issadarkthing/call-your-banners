@@ -19,6 +19,12 @@ export default class extends Command {
     }
 
     const castle = Castle.fromName(castleName);
+    const general = castle.general;
+
+    if (!general) {
+      throw new Error(`castle ${castle.name} has not been assigned a general`);
+    }
+
     const player = Player.fromID(msg.author.id);
 
     if (player.isOnCooldown()) {
@@ -28,10 +34,12 @@ export default class extends Command {
     const attack = player.attack();
 
     castle.hp -= attack;
+    castle.save();
 
     if (castle.hp > 0) {
 
       player.lastAttack = new Date();
+      player.save();
 
       msg.channel.send(
         `${bold(player.name)} attacked ${bold(castleName)} for ${bold(attack)} damage!`
@@ -42,20 +50,28 @@ export default class extends Command {
 
       msg.channel.send(`${bold(castleName)} has fallen!`);
 
-      const otherCastle = client.castles.find(x => x.name !== castleName)[0]!;
-      msg.channel.send(`${bold(otherCastle)} won the battle!`);
+      const winCastle = Castle.castleA.id === castle.id ? Castle.castleB : Castle.castleA;
+      msg.channel.send(`${bold(winCastle.name)} won the battle!`);
 
 
-      // remove any player from general role
+      general.coins += Castle.GENERAL_REWARD;
+      player.coins += Castle.FATAL_BLOW_REWARD;
+
+      general.save();
+      player.save();
+
+      // reset players last attack
       client.players.forEach((val, id) => {
-        client.players.set(id, { ...val, role: "sword", lastAttack: new Date(2000) });
+        client.players.set(id, { ...val, lastAttack: new Date(2000) });
       });
 
-      // delete all castle
-      client.castles.clear();
-    }
+      Castle.castleA.hp = Castle.INITIAL_HP;
+      Castle.castleB.hp = Castle.INITIAL_HP;
 
-    player.save();
+      // resets castle hp
+      Castle.castleA.save();
+      Castle.castleB.save();
+    }
     
   }
 }
