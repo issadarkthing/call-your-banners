@@ -1,3 +1,4 @@
+import { random } from "@jiman24/discordjs-utils";
 import { User } from "discord.js";
 import { client } from "..";
 import { General } from "./General";
@@ -6,6 +7,8 @@ import { Sword } from "./Sword";
 
 export class Player {
   coins = 10_000;
+  minAttack = 50;
+  maxAttack = 100;
 
   constructor(
     public readonly id: string,
@@ -28,6 +31,10 @@ export class Player {
 
   static fromUser(user: User) {
     return this.fromID(user.id);
+  }
+
+  attack() {
+    return random.integer(this.minAttack, this.maxAttack);
   }
 
   save() {
