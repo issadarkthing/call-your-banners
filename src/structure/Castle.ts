@@ -4,6 +4,7 @@ import { Player } from "./Player";
 
 export class Castle {
   hp = 10_000;
+  static readonly MAX = 2;
   
   constructor(
     public name: string,
