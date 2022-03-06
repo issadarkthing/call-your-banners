@@ -4,7 +4,9 @@ import { Player } from "./Player";
 export class Castle {
   hp = 10_000;
   readonly id: string;
+  static readonly MAX_HP = 15_000;
   static readonly MAX = 2;
+  static readonly FORTIFY_COST = 100;
   
   constructor(
     public name: string,
