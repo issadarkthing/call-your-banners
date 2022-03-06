@@ -18,6 +18,10 @@ export class Castle {
     return Player.fromID(this.generalID);
   }
 
+  static hasName(name: string) {
+    return client.castles.has(Castle.nameToID(name));
+  }
+
   static nameToID(name: string) {
     return name.toLowerCase().replace(/\s/g, "-");
   }
