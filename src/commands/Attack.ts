@@ -31,6 +31,10 @@ export default class extends Command {
       throw new Error(`Please wait for ${bold(player.timeLeft())}`);
     }
 
+    if (player.id === general.id) {
+      throw new Error("You cannot attack your own castle");
+    }
+
     const attack = player.attack();
 
     castle.hp -= attack;
