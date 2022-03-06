@@ -1,3 +1,4 @@
+import { client } from "..";
 import { Player } from "./Player";
 
 
@@ -15,5 +16,13 @@ export class Castle {
 
   get general() {
     return Player.fromID(this.generalID);
+  }
+
+  save() {
+    client.castles.set(this.id, { ...this });
+  }
+
+  delete() {
+    client.castles.delete(this.id);
   }
 }
