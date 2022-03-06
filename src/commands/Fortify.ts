@@ -24,11 +24,6 @@ export default class extends Command {
     }
 
     const castle = Castle.fromName(castleName);
-
-    if (!castle) {
-      throw new Error("cannot find castle");
-    }
-
     const fortifyAmount = (amount / Castle.FORTIFY_COST) / 100;
     const castleNewHp = Math.round(castle.hp + castle.hp * fortifyAmount);
 

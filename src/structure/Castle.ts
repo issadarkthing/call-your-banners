@@ -1,45 +1,50 @@
 import { client } from "..";
 import { Player } from "./Player";
 
+function createCastle(id: string, name: string) {
+  const castle = new Castle(id, name);
+  const data = client.castles.get(castle.id);
+
+  if (!data) {
+    castle.save();
+  }
+
+  Object.assign(castle, data);
+  return castle;
+}
+
 export class Castle {
   hp = 10_000;
-  readonly id: string;
   static readonly MAX_HP = 15_000;
   static readonly MAX = 2;
   static readonly FORTIFY_COST = 100;
   
-  constructor(
-    public name: string,
-    public readonly generalID: string,
-  ) {
-    this.id = Castle.nameToID(name);
-  }
+  generalID?: string;
 
+  constructor(
+    readonly id: string,
+    readonly name: string,
+  ) {}
 
   get general() {
+    if (!this.generalID) return;
     return Player.fromID(this.generalID);
   }
 
-  static hasName(name: string) {
-    return client.castles.has(Castle.nameToID(name));
+  static get castleA() {
+    return createCastle("north", "North");
   }
 
-  static nameToID(name: string) {
-    return name.toLowerCase().replace(/\s/g, "-");
+  static get castleB() {
+    return createCastle("south", "South");
   }
 
   static fromName(name: string) {
-    return Castle.fromID(Castle.nameToID(name));
-  }
-
-  static fromID(id: string) {
-    const data = client.castles.get(id) as Castle;
-
-    if (!data) {
-      throw new Error("no castle found");
+    switch (name.toLowerCase()) {
+      case Castle.castleA.name: return Castle.castleA;
+      case Castle.castleB.name: return Castle.castleB;
+      default: throw new Error("cannot find castle");
     }
-
-    return new Castle(data.name, data.generalID);
   }
 
   save() {

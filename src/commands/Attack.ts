@@ -12,12 +12,10 @@ export default class extends Command {
 
   async exec(msg: Message, args: string[]) {
 
-    const castleName = args.join(" ");
+    const castleName = args[0];
 
     if (!castleName) {
       throw new Error("you need to specify which castle");
-    } else if (Castle.hasName(castleName)) {
-      throw new Error(`${castleName} does not exists`);
     }
 
     const castle = Castle.fromName(castleName);

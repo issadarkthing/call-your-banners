@@ -18,11 +18,8 @@ export default class extends Command {
       throw new Error("you need to mention a user");
     }
     
-    const castleName = args.slice(1).join(" ");
-
-    if (!castleName) {
-      throw new Error("you need to provide castle name");
-    }
+    const castleName = args[1];
+    const castle = Castle.fromName(castleName);
 
     const generalCount = client.players
       .reduce((acc, player) => player.role === "general" ? acc + 1 : acc, 0);
@@ -34,13 +31,7 @@ export default class extends Command {
     const player = Player.fromUser(mentionedMember.user);
 
     player.role = "general";
-
-
-    if (client.castles.has(Castle.nameToID(castleName))) {
-      throw new Error(`there is already a castle named ${castleName}`)
-    }
-
-    const castle = new Castle(castleName, player.id);
+    castle.generalID = player.id;
     
     player.save();
     castle.save();
