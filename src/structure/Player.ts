@@ -5,7 +5,7 @@ import { Sword } from "./Sword";
 
 
 export class Player {
-  coins = 10000;
+  coins = 10_000;
 
   constructor(
     public readonly id: string,
@@ -13,8 +13,8 @@ export class Player {
     public type: "general" | "sword",
   ) {}
 
-  fromUser(user: User) {
-    const data = client.players.get(user.id) as Player;
+  static fromID(id: string) {
+    const data = client.players.get(id) as Player;
     let player: Player = new Sword(data.id, data.name, data.type);
 
     if (data.type === "general") {
@@ -24,6 +24,10 @@ export class Player {
     Object.assign(player, data);
 
     return player;
+  }
+
+  static fromUser(user: User) {
+    return this.fromID(user.id);
   }
 
   save() {
