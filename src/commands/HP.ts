@@ -10,8 +10,12 @@ export default class extends Command {
   async exec(msg: Message, args: string[]) {
 
     const castleName = args[0];
-    const castle = Castle.fromName(castleName);
 
+    if (!castleName) {
+      throw new Error("please specify which castle");
+    }
+
+    const castle = Castle.fromName(castleName);
     msg.channel.send(`${castle.name}'s HP: ${castle.hp}`);
 
   }
