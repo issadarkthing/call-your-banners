@@ -26,7 +26,7 @@ export default class extends Command {
       throw new Error("only general can give pay");
     }
 
-    const receiver = Player.fromID(mentionedMember.id);
+    const receiver = Player.fromUser(mentionedMember.user);
 
     player.coins -= amount;
     receiver.coins += amount;

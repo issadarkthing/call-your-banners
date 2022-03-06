@@ -10,9 +10,7 @@ export default class extends Command {
 
   async exec(msg: Message) {
 
-
-    const player = Player.fromID(msg.author.id);
-
+    const player = Player.fromUser(msg.author);
     msg.channel.send(`You have a balance of ${bold(player.coins)} coins`);
   }
 }

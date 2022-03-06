@@ -17,12 +17,20 @@ export abstract class Player {
     public role: "general" | "sword",
   ) {}
 
+  static fromUser(user: User) {
+    const { Sword } = require("./Sword");
+    return Player.fromID(user.id) || new Sword(user.id, user.username, "sword");
+  }
+
   static fromID(id: string) {
     const { General } = require("./General");
     const { Sword } = require("./Sword");
 
-    const data = client.players.get(id) as Player;
-    let player: Player = new Sword(data.id, data.name, data.role);
+    const data = client.players.get(id);
+
+    if (!data) return;
+
+    let player: Player = new Sword(id, "", "sword");
 
     if (data.role === "general") {
       player = new General(data.id, data.name, data.role);
@@ -30,11 +38,8 @@ export abstract class Player {
 
     Object.assign(player, data);
 
-    return player;
-  }
 
-  static fromUser(user: User) {
-    return this.fromID(user.id);
+    return player;
   }
 
   isOnCooldown() {

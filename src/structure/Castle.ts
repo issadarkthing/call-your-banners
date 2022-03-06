@@ -7,9 +7,10 @@ function createCastle(id: string, name: string) {
 
   if (!data) {
     castle.save();
+  } else {
+    Object.assign(castle, data);
   }
 
-  Object.assign(castle, data);
   return castle;
 }
 
@@ -45,8 +46,8 @@ export class Castle {
 
   static fromName(name: string) {
     switch (name.toLowerCase()) {
-      case Castle.castleA.name: return Castle.castleA;
-      case Castle.castleB.name: return Castle.castleB;
+      case Castle.castleA.name.toLowerCase(): return Castle.castleA;
+      case Castle.castleB.name.toLowerCase(): return Castle.castleB;
       default: throw new Error("cannot find castle");
     }
   }

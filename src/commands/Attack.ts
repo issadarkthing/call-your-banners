@@ -25,7 +25,7 @@ export default class extends Command {
       throw new Error(`castle ${castle.name} has not been assigned a general`);
     }
 
-    const player = Player.fromID(msg.author.id);
+    const player = Player.fromUser(msg.author);
 
     if (player.isOnCooldown()) {
       throw new Error(`Please wait for ${bold(player.timeLeft())}`);

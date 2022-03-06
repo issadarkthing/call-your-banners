@@ -31,7 +31,7 @@ export default class extends Command {
       throw new Error(`castle's HP will exceed if ${amount} coins is used to fortify this castle`);
     }
     
-    const player = Player.fromID(msg.author.id);
+    const player = Player.fromUser(msg.author);
 
     if (player.coins < amount) {
       throw new Error("insufficient amount");
