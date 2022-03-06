@@ -34,6 +34,11 @@ export class Castle {
 
   static fromID(id: string) {
     const data = client.castles.get(id) as Castle;
+
+    if (!data) {
+      throw new Error("no castle found");
+    }
+
     return new Castle(data.name, data.generalID);
   }
 
