@@ -13,15 +13,15 @@ export class Player {
   constructor(
     public readonly id: string,
     public name: string,
-    public type: "general" | "sword",
+    public role: "general" | "sword",
   ) {}
 
   static fromID(id: string) {
     const data = client.players.get(id) as Player;
-    let player: Player = new Sword(data.id, data.name, data.type);
+    let player: Player = new Sword(data.id, data.name, data.role);
 
-    if (data.type === "general") {
-      player = new General(data.id, data.name, data.type);
+    if (data.role === "general") {
+      player = new General(data.id, data.name, data.role);
     }
 
     Object.assign(player, data);
