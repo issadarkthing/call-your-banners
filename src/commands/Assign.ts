@@ -1,7 +1,6 @@
 import { Command } from "@jiman24/commandment";
 import { Message, PermissionResolvable } from "discord.js";
 import { Castle } from "../structure/Castle";
-import { General } from "../structure/General";
 import { Player } from "../structure/Player";
 
 export default class extends Command {
@@ -21,8 +20,12 @@ export default class extends Command {
     const castle = Castle.fromName(castleName);
     const player = Player.fromUser(mentionedMember.user);
 
+    if (player.coins < Castle.BATTLE_COST) {
+      throw new Error("assigned player has insufficient amount of coins to be general");
+    }
 
     player.role = "general";
+    player.coins -= Castle.BATTLE_COST;
 
     // remove previous general of the castle
     if (castle.general) {
