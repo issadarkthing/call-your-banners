@@ -1,6 +1,5 @@
 import { Command } from "@jiman24/commandment";
 import { Message, PermissionResolvable } from "discord.js";
-import { client } from "..";
 import { Castle } from "../structure/Castle";
 import { General } from "../structure/General";
 import { Player } from "../structure/Player";
@@ -20,17 +19,17 @@ export default class extends Command {
     
     const castleName = args[1];
     const castle = Castle.fromName(castleName);
-
-    const generalCount = client.players
-      .reduce((acc, player) => player.role === "general" ? acc + 1 : acc, 0);
-
-    if (generalCount >= General.MAX) {
-      throw new Error(`there can only be ${General.MAX} Generals at one time`);
-    }
-
     const player = Player.fromUser(mentionedMember.user);
 
+
     player.role = "general";
+
+    // remove previous general of the castle
+    if (castle.general) {
+      castle.general.role = "sword";
+      castle.general.save();
+    }
+
     castle.generalID = player.id;
     
     player.save();
