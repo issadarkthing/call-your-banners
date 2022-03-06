@@ -60,6 +60,7 @@ export abstract class Player {
   }
 
   save() {
-    client.players.set(this.id, { ...this });
+    const { COOLDOWN, ...data } = this;
+    client.players.set(this.id, { ...data });
   }
 }

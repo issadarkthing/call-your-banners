@@ -11,6 +11,7 @@ export default class extends Command {
   async exec(msg: Message) {
 
     const player = Player.fromUser(msg.author);
+    console.log(player);
     msg.channel.send(`You have a balance of ${bold(player.coins)} coins`);
   }
 }
