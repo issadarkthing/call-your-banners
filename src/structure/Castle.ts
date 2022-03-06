@@ -9,6 +9,10 @@ export class Castle {
     public readonly generalID: string,
   ) {}
 
+  get id() {
+    return this.name.toLowerCase().replace(" ", "-");
+  }
+
   get general() {
     return Player.fromID(this.generalID);
   }
