@@ -5,7 +5,7 @@ import { client } from "..";
 
 
 export abstract class Player {
-  coins = 10_000;
+  coins = 0;
   minAttack = 50;
   maxAttack = 100;
   lastAttack = new Date(2000);
