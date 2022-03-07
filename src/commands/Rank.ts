@@ -4,7 +4,7 @@ import { Message } from "discord.js";
 import { Player } from "../structure/Player";
 
 export default class extends Command {
-  name = "rank";
+  name = "ranking";
   description = "show your role";
 
   async exec(msg: Message) {
