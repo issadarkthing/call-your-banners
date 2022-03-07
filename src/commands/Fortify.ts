@@ -35,6 +35,8 @@ export default class extends Command {
 
     if (player.coins < amount) {
       throw new Error("insufficient amount");
+    } else if (player.role !== "general") {
+      throw new Error("only general can fortify castle");
     }
 
     castle.hp = castleNewHp;

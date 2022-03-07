@@ -2,6 +2,7 @@ import { random } from "@jiman24/discordjs-utils";
 import { User } from "discord.js";
 import { DateTime } from "luxon";
 import { client } from "..";
+import type { Sword } from "./Sword";
 
 
 export abstract class Player {
@@ -17,7 +18,7 @@ export abstract class Player {
     public role: "general" | "sword",
   ) {}
 
-  static fromUser(user: User) {
+  static fromUser(user: User): Sword {
     const { Sword } = require("./Sword");
     return Player.fromID(user.id) || new Sword(user.id, user.username, "sword");
   }
