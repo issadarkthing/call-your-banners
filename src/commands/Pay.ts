@@ -22,8 +22,6 @@ export default class extends Command {
       throw new Error("please gve valid amount");
     } else if (amount > player.coins) {
       throw new Error("insufficient amount");
-    } else if (player.role !== "general") {
-      throw new Error("only general can give pay");
     }
 
     const receiver = Player.fromUser(mentionedMember.user);
