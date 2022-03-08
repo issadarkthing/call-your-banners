@@ -1,5 +1,6 @@
 import { Command } from "@jiman24/commandment";
 import { Message } from "discord.js";
+import { client } from "..";
 import { Castle } from "../structure/Castle";
 import { Player } from "../structure/Player";
 
@@ -8,6 +9,10 @@ export default class extends Command {
   description = "fortify castle";
 
   async exec(msg: Message, args: string[]) {
+
+    if (client.battleStage.stage !== "ready") {
+      throw new Error("you can only fortify on ready stage");
+    }
 
     const castleName = args[0];
     const amountStr = args[1];
