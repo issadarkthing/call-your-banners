@@ -62,23 +62,14 @@ export default class extends Command {
       msg.channel.send(`${bold(winCastle.name)} won the battle!`);
 
 
-      general.coins += Castle.GENERAL_REWARD;
       player.coins += Castle.FATAL_BLOW_REWARD;
 
-      general.save();
       player.save();
 
       // reset players last attack
       client.players.forEach((val, id) => {
         client.players.set(id, { ...val, lastAttack: new Date(2000) });
       });
-
-      Castle.castleA.hp = Castle.INITIAL_HP;
-      Castle.castleB.hp = Castle.INITIAL_HP;
-
-      // resets castle hp
-      Castle.castleA.save();
-      Castle.castleB.save();
     }
     
   }
