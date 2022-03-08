@@ -20,12 +20,9 @@ export default class extends Command {
     const castle = Castle.fromName(castleName);
     const player = Player.fromUser(mentionedMember.user);
 
-    if (player.coins < Castle.BATTLE_COST) {
-      throw new Error("assigned player has insufficient amount of coins to be general");
-    }
 
     player.role = "general";
-    player.coins -= Castle.BATTLE_COST;
+    player.coins += Castle.BATTLE_COST;
 
     // remove previous general of the castle
     if (castle.general) {
