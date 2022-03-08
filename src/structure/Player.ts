@@ -3,6 +3,7 @@ import { User } from "discord.js";
 import { DateTime } from "luxon";
 import { client } from "..";
 import type { Sword } from "./Sword";
+import { Ticket } from "./Ticket";
 
 
 export abstract class Player {
@@ -10,6 +11,7 @@ export abstract class Player {
   minAttack = 50;
   maxAttack = 100;
   lastAttack = new Date(2000);
+  tickets: Ticket[] = [];
   abstract COOLDOWN: number;
 
   constructor(
@@ -39,6 +41,8 @@ export abstract class Player {
 
     Object.assign(player, data);
 
+    //@ts-ignore
+    player.tickets = player.tickets.map((id: string) => Ticket.fromID(id));
 
     return player;
   }
@@ -62,6 +66,6 @@ export abstract class Player {
 
   save() {
     const { COOLDOWN, ...data } = this;
-    client.players.set(this.id, { ...data });
+    client.players.set(this.id, { ...data, tickets: data.tickets.map(x => x.id) });
   }
 }

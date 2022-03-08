@@ -9,6 +9,7 @@ specifiers:
   enmap: ^5.8.8
   luxon: ^2.3.1
   typescript: ^4.6.2
+  uuidv4: ^6.2.12
 
 dependencies:
   '@jiman24/commandment': 0.4.2
@@ -18,6 +19,7 @@ dependencies:
   enmap: 5.8.8
   luxon: 2.3.1
   typescript: 4.6.2
+  uuidv4: 6.2.12
 
 devDependencies:
   '@types/luxon': 2.3.0
@@ -96,6 +98,10 @@ packages:
 
   /@types/node/17.0.21:
     resolution: {integrity: sha512-DBZCJbhII3r90XbQxI8Y9IjjiiOGlZ0Hr32omXIZvwwZ7p4DMMXGrKXVyPfuoBOri9XNtL0UK69jYIBIsRX3QQ==}
+    dev: false
+
+  /@types/uuid/8.3.1:
+    resolution: {integrity: sha512-Y2mHTRAbqfFkpjldbkHGY8JIzRN6XqYRliG8/24FcHm2D2PwW24fl5xMRTVGdrb7iMrwCaIEbLWerGIkXuFWVg==}
     dev: false
 
   /@types/ws/8.5.2:
@@ -804,6 +810,18 @@ packages:
 
   /util-deprecate/1.0.2:
     resolution: {integrity: sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=}
+    dev: false
+
+  /uuid/8.3.2:
+    resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
+    hasBin: true
+    dev: false
+
+  /uuidv4/6.2.12:
+    resolution: {integrity: sha512-UnN4ThIYWhv3ZUE8UwDnnCvh4JafCNu+sQkxmLyjCVwK3rjLfkg3DYiEv6oCMDIAIVEDP4INg4kX/C5hKaRzZA==}
+    dependencies:
+      '@types/uuid': 8.3.1
+      uuid: 8.3.2
     dev: false
 
   /webidl-conversions/3.0.1:
