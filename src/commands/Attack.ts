@@ -66,10 +66,8 @@ export default class extends Command {
 
       player.save();
 
-      // reset players last attack
-      client.players.forEach((val, id) => {
-        client.players.set(id, { ...val, lastAttack: new Date(2000) });
-      });
+      client.battleStage.setEndStage(msg.channel);
+
     }
     
   }
