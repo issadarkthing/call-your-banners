@@ -46,8 +46,8 @@ export class BattleStage {
       throw new Error("South Castle has not been assigned a general");
     }
 
-    castleAGeneral.coins -= Castle.BATTLE_COST;
-    castleBGeneral.coins -= Castle.BATTLE_COST;
+    castleAGeneral.coins += Castle.BATTLE_COST;
+    castleBGeneral.coins += Castle.BATTLE_COST;
 
     const giveMessage = (player: Player) => {
       channel.send(`Gave ${Castle.BATTLE_COST} coins to ${player.name}`);

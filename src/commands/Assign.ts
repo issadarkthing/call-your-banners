@@ -22,7 +22,6 @@ export default class extends Command {
 
 
     player.role = "general";
-    player.coins += Castle.BATTLE_COST;
 
     // remove previous general of the castle
     if (castle.general) {
