@@ -24,6 +24,7 @@ export class Castle {
   static readonly GENERAL_REWARD = 5_000;
   hp = Castle.INITIAL_HP;
   
+  coinsSpent = 0;
   generalID?: string;
 
   constructor(

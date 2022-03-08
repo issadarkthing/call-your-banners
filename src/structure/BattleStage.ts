@@ -95,19 +95,27 @@ export class BattleStage {
     channel.send(`${winnerCastle.name} Castle wins!`);
 
     winGeneral.coins += Castle.GENERAL_REWARD;
+    winGeneral.role = "sword";
     winGeneral.save();
-
     channel.send(`${winGeneral.name} received ${Castle.GENERAL_REWARD} coins`);
 
-    loseGeneral.coins = 0;
+    delete castleA.generalID;
+    castleA.save();
+
+    const coinsTaken = Castle.BATTLE_COST - loserCastle.coinsSpent;
+    loseGeneral.coins = loseGeneral.coins < coinsTaken ? 0 : loseGeneral.coins - coinsTaken;
+    loseGeneral.role = "sword";
     loseGeneral.save();
+    channel.send(`All ${winGeneral.name}'s coins has been taken away`);
+
+    delete castleB.generalID;
+    castleB.save();
 
     // reset players last attack
     client.players.forEach((val, id) => {
       client.players.set(id, { ...val, lastAttack: new Date(2000) });
     });
 
-    channel.send(`All ${winGeneral.name}'s coins has been taken away`);
   }
 
   setStage(channel: TextBasedChannel, stage: Stage | string) {

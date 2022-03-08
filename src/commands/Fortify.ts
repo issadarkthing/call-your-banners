@@ -45,6 +45,7 @@ export default class extends Command {
     }
 
     castle.hp = castleNewHp;
+    castle.coinsSpent += amount;
     player.coins -= amount;
 
     castle.save();
