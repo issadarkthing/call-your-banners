@@ -3,8 +3,8 @@ import { client } from "..";
 
 export class Settings {
   id = "main";
-  generalCooldown = 7; // hours
-  swordsCooldown = 2; // hours
+  generalCooldown = 3; // hours
+  swordsCooldown = 7; // hours
 
   save() {
     client._settings.set(this.id, { ...this });
