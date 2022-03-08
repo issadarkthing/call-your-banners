@@ -37,6 +37,16 @@ export class Castle {
     return Player.fromID(this.generalID);
   }
 
+  removeGeneral() {
+    if (!this.general) return;
+
+    this.general.role = "sword";
+    this.general.save();
+
+    delete this.generalID;
+    this.save();
+  }
+
   static get castleA() {
     return createCastle("north", "North");
   }

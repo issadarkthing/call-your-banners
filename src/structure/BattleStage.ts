@@ -2,7 +2,6 @@ import { TextBasedChannel } from "discord.js";
 import Enmap from "enmap";
 import { client } from "..";
 import { Castle } from "./Castle";
-import { Player } from "./Player";
 
 /** 
  * There are 3 stages in this game:
@@ -82,21 +81,21 @@ export class BattleStage {
     channel.send(`${winnerCastle.name} Castle wins!`);
 
     winGeneral.coins += Castle.GENERAL_REWARD;
-    winGeneral.role = "sword";
     winGeneral.save();
     channel.send(`${winGeneral.name} received ${Castle.GENERAL_REWARD} coins`);
 
-    delete castleA.generalID;
-    castleA.save();
+    winnerCastle.removeGeneral();
+    winnerCastle.coinsSpent = 0;
+    winnerCastle.save();
 
     const coinsTaken = Castle.BATTLE_COST - loserCastle.coinsSpent;
     loseGeneral.coins = loseGeneral.coins < coinsTaken ? 0 : loseGeneral.coins - coinsTaken;
-    loseGeneral.role = "sword";
     loseGeneral.save();
     channel.send(`${coinsTaken} coins are taken away from ${loseGeneral.name}`);
 
-    delete castleB.generalID;
-    castleB.save();
+    loserCastle.removeGeneral();
+    loserCastle.coinsSpent = 0;
+    loserCastle.save();
 
     // reset players last attack
     client.players.forEach((val, id) => {
