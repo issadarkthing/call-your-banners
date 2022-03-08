@@ -12,6 +12,10 @@ export default class extends Command {
 
   async exec(msg: Message, args: string[]) {
 
+    if (client.battleStage.stage !== "start") {
+      throw new Error("you can only attack when battle starts");
+    }
+
     const castleName = args[0];
 
     if (!castleName) {
