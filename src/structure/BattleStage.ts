@@ -36,6 +36,11 @@ export class BattleStage {
 
     Castle.castleB.hp = Castle.INITIAL_HP;
     Castle.castleB.save();
+  }
+
+  setStartStage(channel: TextBasedChannel) {
+    this.stage = "start";
+    this.save();
 
     const castleAGeneral = Castle.castleA.general;
     const castleBGeneral = Castle.castleB.general;
@@ -45,24 +50,6 @@ export class BattleStage {
     } else if (!castleBGeneral) {
       throw new Error("South Castle has not been assigned a general");
     }
-
-    castleAGeneral.coins += Castle.BATTLE_COST;
-    castleBGeneral.coins += Castle.BATTLE_COST;
-
-    const giveMessage = (player: Player) => {
-      channel.send(`Gave ${Castle.BATTLE_COST} coins to ${player.name}`);
-    }
-
-    giveMessage(castleAGeneral);
-    giveMessage(castleBGeneral);
-
-    castleAGeneral.save();
-    castleBGeneral.save();
-  }
-
-  setStartStage(channel: TextBasedChannel) {
-    this.stage = "start";
-    this.save();
 
     channel.send(`Generals can no longer fortify castle`);
     channel.send(`Swords and Generals now may attack castle`);
