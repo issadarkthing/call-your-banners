@@ -1,7 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@jiman24/commandment': ^0.4.2
+  '@jiman24/commandment': ^0.6.2
   '@jiman24/discordjs-utils': ^0.1.2
   '@types/luxon': ^2.3.0
   discord.js: ^13.6.0
@@ -12,7 +12,7 @@ specifiers:
   uuidv4: ^6.2.12
 
 dependencies:
-  '@jiman24/commandment': 0.4.2
+  '@jiman24/commandment': 0.6.2
   '@jiman24/discordjs-utils': 0.1.2
   discord.js: 13.6.0
   dotenv: 16.0.0
@@ -50,9 +50,11 @@ packages:
     engines: {node: '>=16.0.0', npm: '>=7.0.0'}
     dev: false
 
-  /@jiman24/commandment/0.4.2:
-    resolution: {integrity: sha512-aJfkA95B8aue1+juX8QxdG3Kd38BHr8hIhkjZtlcAMlamJEy3VhQkTrm9sodIEna8v4HDZrN9LbN1DaPXG4+/w==}
+  /@jiman24/commandment/0.6.2:
+    resolution: {integrity: sha512-X7kJevNpnaziICC0eaT5llwDfj78mh1qsvqb0dYSA5lqlWFhp1zwcvcb1pVMhLScN/kB13go/+jBditzFr1zCQ==}
+    hasBin: true
     dependencies:
+      arg: 5.0.1
       async-mutex: 0.3.2
       chalk: 4.1.2
       common-tags: 1.8.2
@@ -138,6 +140,10 @@ packages:
     dependencies:
       delegates: 1.0.0
       readable-stream: 2.3.7
+    dev: false
+
+  /arg/5.0.1:
+    resolution: {integrity: sha512-e0hDa9H2Z9AwFkk2qDlwhoMYE4eToKarchkQHovNdLTCYMHZHeRjI71crOh+dio4K6u1IcwubQqo79Ga4CyAQA==}
     dev: false
 
   /array-back/3.1.0:

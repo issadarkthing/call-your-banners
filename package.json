@@ -4,15 +4,17 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
+    "add": "commandment --dir src/commands",
     "dev": "nodemon dist/index.js",
     "build": "tsc",
     "watch": "tsc -w",
+    "clean": "rm -rf dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@jiman24/commandment": "^0.4.2",
+    "@jiman24/commandment": "^0.6.2",
     "@jiman24/discordjs-utils": "^0.1.2",
     "discord.js": "^13.6.0",
     "dotenv": "^16.0.0",
