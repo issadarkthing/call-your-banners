@@ -106,7 +106,7 @@ export class BattleStage {
     loseGeneral.coins = loseGeneral.coins < coinsTaken ? 0 : loseGeneral.coins - coinsTaken;
     loseGeneral.role = "sword";
     loseGeneral.save();
-    channel.send(`All ${winGeneral.name}'s coins has been taken away`);
+    channel.send(`${coinsTaken} coins are taken away from ${loseGeneral.name}`);
 
     delete castleB.generalID;
     castleB.save();
