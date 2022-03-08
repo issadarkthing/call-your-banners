@@ -21,7 +21,7 @@ export class Castle {
   static readonly FORTIFY_COST = 100;
   static readonly BATTLE_COST = 5_000;
   static readonly FATAL_BLOW_REWARD = Math.round((Castle.BATTLE_COST * 2) * 0.1);
-  static readonly GENERAL_REWARD = Math.round((Castle.BATTLE_COST * 2) * 0.9);
+  static readonly GENERAL_REWARD = 5_000;
   hp = Castle.INITIAL_HP;
   
   generalID?: string;
