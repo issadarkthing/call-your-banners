@@ -49,12 +49,12 @@ export class BattleStage {
     castleAGeneral.coins -= Castle.BATTLE_COST;
     castleBGeneral.coins -= Castle.BATTLE_COST;
 
-    const deductMessage = (player: Player) => {
-      channel.send(`Deducted ${Castle.BATTLE_COST} coins from ${player.name}`);
+    const giveMessage = (player: Player) => {
+      channel.send(`Gave ${Castle.BATTLE_COST} coins to ${player.name}`);
     }
 
-    deductMessage(castleAGeneral);
-    deductMessage(castleBGeneral);
+    giveMessage(castleAGeneral);
+    giveMessage(castleBGeneral);
 
     castleAGeneral.save();
     castleBGeneral.save();
