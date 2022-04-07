@@ -102,6 +102,8 @@ export class BattleStage {
       client.players.set(id, { ...val, lastAttack: new Date(2000) });
     });
 
+    client.strikeHistory.clear();
+    client.strikeHistory.save();
   }
 
   setStage(channel: TextBasedChannel, stage: Stage | string) {

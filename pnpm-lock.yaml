@@ -1,7 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@jiman24/commandment': ^0.6.2
+  '@jiman24/commandment': ^0.7.0
   '@jiman24/discordjs-utils': ^0.1.2
   '@types/luxon': ^2.3.0
   discord.js: ^13.6.0
@@ -12,7 +12,7 @@ specifiers:
   uuidv4: ^6.2.12
 
 dependencies:
-  '@jiman24/commandment': 0.6.2
+  '@jiman24/commandment': 0.7.0
   '@jiman24/discordjs-utils': 0.1.2
   discord.js: 13.6.0
   dotenv: 16.0.0
@@ -50,8 +50,8 @@ packages:
     engines: {node: '>=16.0.0', npm: '>=7.0.0'}
     dev: false
 
-  /@jiman24/commandment/0.6.2:
-    resolution: {integrity: sha512-X7kJevNpnaziICC0eaT5llwDfj78mh1qsvqb0dYSA5lqlWFhp1zwcvcb1pVMhLScN/kB13go/+jBditzFr1zCQ==}
+  /@jiman24/commandment/0.7.0:
+    resolution: {integrity: sha512-Z82bD5tKUCLuoxhTJXZfIRDWnxzBjfXbTf4ukYucujoOQyCws9mXdEbGsjMT+7cukeNfo5e+V1jtF97tkeka+A==}
     hasBin: true
     dependencies:
       arg: 5.0.1
@@ -268,8 +268,8 @@ packages:
       typical: 4.0.0
     dev: false
 
-  /command-line-usage/6.1.1:
-    resolution: {integrity: sha512-F59pEuAR9o1SF/bD0dQBDluhpT4jJQNWUHEuVBqpDmCUo6gPjCi+m9fCWnWZVR/oG6cMTUms4h+3NPl74wGXvA==}
+  /command-line-usage/6.1.2:
+    resolution: {integrity: sha512-I+0XN613reAhpBQ6icsPOTwu9cvhc9NtLtUcY2fGYuwm9JZiWBzFDA8w0PHqQjru7Xth7fM/y9TJ13+VKdjh7Q==}
     engines: {node: '>=8.0.0'}
     dependencies:
       array-back: 4.0.2
@@ -749,7 +749,7 @@ packages:
       '@75lb/deep-merge': 1.1.1
       array-back: 6.2.2
       command-line-args: 5.2.1
-      command-line-usage: 6.1.1
+      command-line-usage: 6.1.2
       stream-read-all: 3.0.1
       typical: 7.1.1
       wordwrapjs: 5.1.0

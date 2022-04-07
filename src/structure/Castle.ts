@@ -14,6 +14,11 @@ function createCastle(id: string, name: string) {
   return castle;
 }
 
+export interface Strike {
+  playerID: string;
+  damage: number;
+}
+
 export class Castle {
   static readonly INITIAL_HP = 10_000;
   static readonly MAX_HP = 15_000;

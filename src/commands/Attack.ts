@@ -44,6 +44,15 @@ export default class extends Command {
     castle.hp -= attack;
     castle.save();
 
+    client.strikeHistory.addStrike({ 
+      playerID: player.id, 
+      damage: attack, 
+      castleID: castle.id,
+      date: new Date(),
+    });
+
+    client.strikeHistory.save();
+
     if (castle.hp > 0) {
 
       player.lastAttack = new Date();
