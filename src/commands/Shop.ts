@@ -10,7 +10,8 @@ export default class extends Command {
   async exec(msg: Message, args: string[]) {
 
     const arg1 = args[0];
-    const arg2 = args[1]
+    const arg2 = args[1];
+    const arg3 = args[2];
     const index = parseInt(arg2);
 
     if (!arg1) {
@@ -33,20 +34,28 @@ export default class extends Command {
     }
 
     const player = Player.fromUser(msg.author);
+    const amount = parseInt(arg3) || 1;
 
-    if (player.coins < Ticket.price) {
+    if (amount < 1) {
+      throw new Error("amount cannot be less than zero");
+    }
+
+    const cost = Ticket.price * amount;
+
+    if (player.coins < cost) {
       throw new Error("insufficient balance");
     }
 
-    player.coins -= Ticket.price;
+    player.coins -= cost;
 
-    const ticket = new Ticket();
 
-    player.tickets.push(ticket);
+    for (let i = 0; i < amount; i++) {
+      const ticket = new Ticket();
+      player.tickets.push(ticket);
+      msg.channel.send(`Successfully purchased **raffle ticket #${ticket.id}**`);
+    }
 
     player.save();
-
-    msg.channel.send(`Successfully purchased **raffle ticket #${ticket.id}**`);
 
   }
 }
