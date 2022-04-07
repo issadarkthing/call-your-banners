@@ -88,8 +88,8 @@ export class BattleStage {
     winnerCastle.coinsSpent = 0;
     winnerCastle.save();
 
-    const coinsTaken = Castle.BATTLE_COST - loserCastle.coinsSpent;
-    loseGeneral.coins = loseGeneral.coins < coinsTaken ? 0 : loseGeneral.coins - coinsTaken;
+    const coinsTaken = loseGeneral.coins;
+    loseGeneral.coins = 0;
     loseGeneral.save();
     channel.send(`${coinsTaken} coins are taken away from ${loseGeneral.name}`);
 
