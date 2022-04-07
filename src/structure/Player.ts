@@ -20,6 +20,8 @@ export abstract class Player {
     public role: "general" | "sword",
   ) {}
 
+  // Instantiate Sword or General class based on player role. Creates new Sword
+  // if player not exists
   static fromUser(user: User): Sword {
     const { Sword } = require("./Sword");
     return Player.fromID(user.id) || new Sword(user.id, user.username, "sword");
