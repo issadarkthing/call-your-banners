@@ -22,6 +22,8 @@ export default class extends Command {
       throw new Error("please gve valid amount");
     } else if (amount > player.coins) {
       throw new Error("insufficient amount");
+    } else if (amount < 1) {
+      throw new Error("please give an amount more than 0");
     }
 
     const receiver = Player.fromUser(mentionedMember.user);
