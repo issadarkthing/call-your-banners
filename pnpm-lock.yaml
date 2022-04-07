@@ -3,7 +3,9 @@ lockfileVersion: 5.3
 specifiers:
   '@jiman24/commandment': ^0.7.0
   '@jiman24/discordjs-utils': ^0.1.2
+  '@types/common-tags': ^1.8.1
   '@types/luxon': ^2.3.0
+  common-tags: ^1.8.2
   discord.js: ^13.6.0
   dotenv: ^16.0.0
   enmap: ^5.8.8
@@ -14,6 +16,7 @@ specifiers:
 dependencies:
   '@jiman24/commandment': 0.7.0
   '@jiman24/discordjs-utils': 0.1.2
+  common-tags: 1.8.2
   discord.js: 13.6.0
   dotenv: 16.0.0
   enmap: 5.8.8
@@ -22,6 +25,7 @@ dependencies:
   uuidv4: 6.2.12
 
 devDependencies:
+  '@types/common-tags': 1.8.1
   '@types/luxon': 2.3.0
 
 packages:
@@ -86,6 +90,10 @@ packages:
     resolution: {integrity: sha512-t09vSN3MdfsyCHoFcTRCH/iUtG7OJ0CsjzB8cjAmKc/va/kIgeDI/TxsigdncE/4be734m0cvIYwNaV4i2XqAw==}
     engines: {node: '>=10'}
     dev: false
+
+  /@types/common-tags/1.8.1:
+    resolution: {integrity: sha512-20R/mDpKSPWdJs5TOpz3e7zqbeCNuMCPhV7Yndk9KU2Rbij2r5W4RzwDPkzC+2lzUqXYu9rFzTktCBnDjHuNQg==}
+    dev: true
 
   /@types/luxon/2.3.0:
     resolution: {integrity: sha512-mWXdRlg+5dWvxU+uaijB2RY5NrJtMEXR6j+D6W66hPuezSVXrQqQvWa/JNHntgEYgjzeoVRrQVmMWAbKjUJiFQ==}
