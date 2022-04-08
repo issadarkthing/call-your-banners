@@ -53,6 +53,8 @@ export default class extends Command {
 
     client.strikeHistory.save();
 
+    player.strikeCount++;
+
     if (castle.hp > 0) {
 
       player.lastAttack = new Date();

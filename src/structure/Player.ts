@@ -11,6 +11,7 @@ export abstract class Player {
   minAttack = 50;
   maxAttack = 100;
   lastAttack = new Date(2000);
+  strikeCount = 0;
   tickets: Ticket[] = [];
   abstract COOLDOWN: number;
 
