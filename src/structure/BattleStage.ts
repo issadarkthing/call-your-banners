@@ -2,6 +2,8 @@ import { TextBasedChannel } from "discord.js";
 import Enmap from "enmap";
 import { client } from "..";
 import { Castle } from "./Castle";
+import { Player } from "./Player";
+import { Sword } from "./Sword";
 
 /** 
  * There are 3 stages in this game:
@@ -97,9 +99,20 @@ export class BattleStage {
     loserCastle.coinsSpent = 0;
     loserCastle.save();
 
-    // reset players last attack
-    client.players.forEach((val, id) => {
-      client.players.set(id, { ...val, lastAttack: new Date(2000) });
+    client.players.forEach((_, id) => {
+
+      const player = Player.fromID(id as string)!;
+
+      if (player instanceof Sword) {
+
+        const strikeHistory = client.strikeHistory.current
+          .filter(x => x.playerID === player.id);
+
+        player.rankUp(strikeHistory.length);
+      }
+
+      player.lastAttack = new Date(2000);
+      player.save();
     });
 
     client.strikeHistory.clear();

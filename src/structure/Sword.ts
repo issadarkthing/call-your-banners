@@ -10,7 +10,17 @@ export class Sword extends Player {
     this.COOLDOWN = client.settings.swordsCooldown;
   }
 
-  rankUp() {
-    this.minAttack < MIN_ATTACK_CAP && this.minAttack++; 
+  rankUp(currentBattleStrikes: number) {
+
+    if (this.minAttack < MIN_ATTACK_CAP) {
+
+      if (currentBattleStrikes > 10) {
+        this.minAttack += 2;
+      } else {
+        this.minAttack += 1;
+      }
+
+    }
+
   }
 }
