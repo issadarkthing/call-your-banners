@@ -32,7 +32,7 @@ export default class extends Command {
     const text = stripIndents`Lifetime gross attack: ${lifeTimeGrossAttack}
     Average damage per attack: ${averageDamage}
     # of strikes current battle: ${numberOfStrikesCurrentBattle}
-    # of strikes lifetime ${numberOfStrikesCurrentBattle}
+    # of strikes lifetime: ${numberOfStrikesCurrentBattle}
     `;
 
     msg.channel.send(text);
