@@ -89,6 +89,7 @@ export class BattleStage {
     channel.send(`${winGeneral.name} received ${Castle.GENERAL_REWARD} coins`);
 
     winnerCastle.removeGeneral();
+    winnerCastle.hp = Castle.INITIAL_HP;
     winnerCastle.coinsSpent = 0;
     winnerCastle.save();
 
@@ -98,6 +99,7 @@ export class BattleStage {
     channel.send(`${coinsTaken} coins are taken away from ${loseGeneral.name}`);
 
     loserCastle.removeGeneral();
+    loserCastle.hp = Castle.INITIAL_HP;
     loserCastle.coinsSpent = 0;
     loserCastle.save();
 
