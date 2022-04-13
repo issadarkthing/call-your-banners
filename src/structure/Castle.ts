@@ -1,4 +1,5 @@
 import { client } from "..";
+import { General } from "./General";
 import { Player } from "./Player";
 
 function createCastle(id: string, name: string) {
@@ -9,6 +10,10 @@ function createCastle(id: string, name: string) {
     castle.save();
   } else {
     Object.assign(castle, data);
+  }
+
+  if (castle.generalID) {
+    castle.general = Player.fromID(castle.generalID);
   }
 
   return castle;
@@ -27,6 +32,8 @@ export class Castle {
   static readonly BATTLE_COST = 5_000;
   static readonly FATAL_BLOW_REWARD = Math.round((Castle.BATTLE_COST * 2) * 0.1);
   static readonly GENERAL_REWARD = 5_000;
+
+  general?: General;
   hp = Castle.INITIAL_HP;
   
   coinsSpent = 0;
@@ -36,11 +43,6 @@ export class Castle {
     readonly id: string,
     readonly name: string,
   ) {}
-
-  get general() {
-    if (!this.generalID) return;
-    return Player.fromID(this.generalID);
-  }
 
   removeGeneral() {
     if (!this.general) return;

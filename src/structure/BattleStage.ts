@@ -71,6 +71,8 @@ export class BattleStage {
 
     const winnerCastle = castleA.hp > castleB.hp ? castleA : castleB;
     const loserCastle = castleA.hp < castleB.hp ? castleA : castleB;
+
+
     const winGeneral = winnerCastle.general;
     const loseGeneral = loserCastle.general;
 

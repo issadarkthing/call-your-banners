@@ -24,10 +24,7 @@ export default class extends Command {
     player.role = "general";
 
     // remove previous general of the castle
-    if (castle.general) {
-      castle.general.role = "sword";
-      castle.general.save();
-    }
+    castle.removeGeneral();
 
     castle.generalID = player.id;
     
@@ -35,6 +32,5 @@ export default class extends Command {
     castle.save();
 
     msg.channel.send(`Successfully set ${player.name} as General to ${castleName}`);
-
   }
 }
