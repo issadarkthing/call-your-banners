@@ -26,7 +26,7 @@ export default class extends Command {
     const embed = new MessageEmbed()
       .setColor("RANDOM")
       .setTitle("Full Leaderboard")
-      .setFooter({ text: `Use command !fullleaderboard 2 to go to 2nd page\n[${index + 1}/${chunkedPlayers.length}]` });
+      .setFooter({ text: `Use command !${this.name} 2 to go to 2nd page\n[${index + 1}/${chunkedPlayers.length}]` });
 
     const list = chunkedPlayers.at(index);
 

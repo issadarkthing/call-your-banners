@@ -23,7 +23,8 @@ export default class extends Command {
     const chunkedPlayers = this.chunk(players, 10);
     const embed = new MessageEmbed()
       .setColor("RANDOM")
-      .setTitle("Stats");
+      .setTitle("Stats")
+      .setFooter({ text: `Use command !${this.name} 2 to go to 2nd page\n[${index + 1}/${chunkedPlayers.length}]` });
 
     const list = chunkedPlayers.at(index);
 
