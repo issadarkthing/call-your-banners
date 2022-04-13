@@ -1,6 +1,5 @@
 import { Message } from "discord.js";
 import { Command } from "@jiman24/commandment";
-import { Castle } from "../structure/Castle";
 import { bold, cap, toNList } from "@jiman24/discordjs-utils";
 import { client } from "..";
 import { DateTime } from "luxon";

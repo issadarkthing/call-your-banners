@@ -17,8 +17,25 @@ export default class extends Command {
     const index = parseInt(args[0]) - 1 || 0;
 
     const players = [...client.players.values()]
-      .sort((a, b) => b.strikeCount - a.strikeCount)
-      .map((x, i) => `${i + 1}. ${x.name} ${x.strikeCount || 0}`);
+      .map((player) => {
+        const strikes = client
+          .strikeHistory
+          .current
+          .filter(x => x.playerID === player.id);
+
+        const strikeCount = strikes.length;
+        const damageDealt = strikes.reduce((acc, val) => val.damage + acc, 0);
+
+        return {
+          name: player.name,
+          strikeCount,
+          damageDealt,
+        }
+      })
+      .sort((a, b) => b.damageDealt - a.damageDealt)
+      .map((x, i) => { 
+        return `${i + 1}. ${x.name} ${x.damageDealt} ${x.strikeCount}` }
+      );
 
     const chunkedPlayers = this.chunk(players, 10);
     const embed = new MessageEmbed()
@@ -32,7 +49,7 @@ export default class extends Command {
       throw new Error(`You can give index between the range of 0..${chunkedPlayers.length}`);
     }
 
-    embed.setDescription("Name | Strike Count" + "\n" + list.join("\n"));
+    embed.setDescription("Name | Damage Dealt | Strike Count" + "\n" + list.join("\n"));
     this.sendEmbed(msg, embed);
   }
 }
