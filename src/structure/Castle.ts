@@ -71,7 +71,8 @@ export class Castle {
   }
 
   save() {
-    client.castles.set(this.id, { ...this });
+    const { general, ...data } = this;
+    client.castles.set(this.id, data);
   }
 
   delete() {
