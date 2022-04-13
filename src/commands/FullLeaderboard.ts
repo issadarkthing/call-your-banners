@@ -13,7 +13,9 @@ export default class extends Command {
     );
   }
 
-  async exec(msg: Message) {
+  async exec(msg: Message, args: string[]) {
+
+    const index = parseInt(args[0]) - 1 || 0;
 
     const players = [...client.players
       .values()]
@@ -23,11 +25,16 @@ export default class extends Command {
     const chunkedPlayers = this.chunk(players, 10);
     const embed = new MessageEmbed()
       .setColor("RANDOM")
-      .setTitle("Full Leaderboard");
+      .setTitle("Full Leaderboard")
+      .setFooter({ text: `Use command !fullleaderboard 2 to go to 2nd page\n[${index + 1}/${chunkedPlayers.length}]` });
 
-    for (const players of chunkedPlayers) {
-      embed.setDescription("Name | Coins" + "\n" + players.join("\n"));
-      this.sendEmbed(msg, embed);
+    const list = chunkedPlayers.at(index);
+
+    if (!list) {
+      throw new Error(`You can give index between the range of 0..${chunkedPlayers.length}`);
     }
+
+    embed.setDescription("Name | Coins" + "\n" + list.join("\n"));
+    this.sendEmbed(msg, embed);
   }
 }
